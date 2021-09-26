@@ -30,7 +30,10 @@ Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v
 
 Request Header: Content-Type application/json
 
-Request Body: {
+Request Body: 
+
+```
+{
 	"id": "0002",
 	"type": "donut",
 	"name": "Cake",
@@ -56,3 +59,4 @@ Request Body: {
 			{ "id": "5004", "type": "Maple" }
 		]
 }
+```
