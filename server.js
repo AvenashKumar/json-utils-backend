@@ -37,6 +37,7 @@ app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'
             throw err;
         }
         const json = JSON.stringify(result, null, Number(req.params.indent));
+        res.header("Content-Type",'application/json');
         res.send(json);        
     });
 });
