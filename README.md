@@ -60,3 +60,26 @@ Request Body:
 		]
 }
 ```
+
+## XML 2 JSON
+
+Request Type: POST
+
+Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/xml2json/indent/2
+
+Request Header: Content-Type application/json
+
+Request Body: 
+
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<user id="1">
+    <name>John Doe</name>
+    <email>john.doe@example.com</email>
+    <roles>
+        <role>Member</role>
+        <role>Admin</role>
+    </roles>
+    <admin>true</admin>
+</user>
+```
