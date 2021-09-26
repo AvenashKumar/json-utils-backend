@@ -23,6 +23,13 @@ app.post("/json-utils/api/v1/json2yaml/indent/:indent", (req, res)=>{
     res.send(doc.toString());
 });
 
+app.post("/json-utils/api/v1/yaml2json/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const jsonObj = YAML.parse(req.body);
+    const formattedJson = JSON.stringify(jsonObj, null, Number(req.params.indent));
+    res.header("Content-Type",'application/json');
+    res.send(formattedJson);
+});
+
 app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
     const xml = req.body;
     XML2JS.parseString(xml, (err, result) => {
