@@ -2,6 +2,7 @@
 
 import Express from "express";
 import YAML from "yaml";
+import XML2JS from "xml2js";
 
 // Constants
 const PORT = process.env.PORT || 4000;
@@ -20,6 +21,17 @@ app.post("/json-utils/api/v1/json2yaml/indent/:indent", (req, res)=>{
     const doc = new YAML.Document({indent: Number(req.params.indent)});
     doc.contents = req.body;
     res.send(doc.toString());
+});
+
+app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const xml = req.body;
+    XML2JS.parseString(xml, (err, result) => {
+        if(err) {
+            throw err;
+        }
+        const json = JSON.stringify(result, null, Number(req.params.indent));
+        res.send(json);        
+    });
 });
 
 

@@ -31,3 +31,20 @@ Content-Type: application/json
 			{ "id": "5004", "type": "Maple" }
 		]
 }
+
+###
+
+POST http://localhost:4000/json-utils/api/v1/xml2json/indent/2
+Content-Type: application/xml
+
+<xs:complexType name="fullpersoninfo">
+  <xs:complexContent>
+    <xs:extension base="personinfo">
+      <xs:sequence>
+        <xs:element name="address" type="xs:string"/>
+        <xs:element name="city" type="xs:string"/>
+        <xs:element name="country" type="xs:string"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
