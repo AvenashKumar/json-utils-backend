@@ -1,5 +1,17 @@
 # json-utils-backend
 
+# Pre Req:
+
+1. VS Code
+
+2. Node 14.17.6
+
+3. Postman
+
+# Run:
+
+node server.js
+
 # Docker image build:
 
 docker build . -t us.gcr.io/json-utils-327201/json-utils-backend:1.0.0
@@ -14,7 +26,7 @@ docker push us.gcr.io/json-utils-327201/json-utils-backend:1.0.0
 
 Request Type: POST
 
-Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/json2yaml
+Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/json2yaml/indent/2
 
 Request Header: Content-Type application/json
 
