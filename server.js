@@ -3,6 +3,7 @@
 import Express from "express";
 import YAML from "yaml";
 import XML2JS from "xml2js";
+import cors from 'cors'
 
 // Constants
 const PORT = process.env.PORT || 4000;
@@ -12,6 +13,7 @@ const HOST = '0.0.0.0';
 const app = Express();
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));
+app.use(cors());
 
 app.get("/json-utils/api/v1/health", (req, res)=>{
     res.json({"server": "UP"});
