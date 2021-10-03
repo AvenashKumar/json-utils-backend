@@ -20,9 +20,9 @@ app.get("/json-utils/api/v1/health", (req, res)=>{
     res.json({"server": "UP"});
 });
 
-app.post("/json-utils/api/v1/json2yaml/indent/:indent", (req, res)=>{
+app.post("/json-utils/api/v1/json2yaml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
     const doc = new YAML.Document({indent: Number(req.params.indent)});
-    doc.contents = req.body;
+    doc.contents = JSON.parse(req.body);
     res.send(doc.toString());
 });
 
@@ -46,7 +46,7 @@ app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'
 });
 
 app.post("/json-utils/api/v1/json2xml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
-    const json = req.body;
+    const json = JSON.parse(req.body);
     const options = {
         declaration:{
             encoding: "UTF-8"
