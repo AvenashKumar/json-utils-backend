@@ -3,7 +3,8 @@
 import Express from "express";
 import YAML from "yaml";
 import XML2JS from "xml2js";
-import cors from 'cors'
+import cors from 'cors';
+import js2xmlparser from 'js2xmlparser';
 
 // Constants
 const PORT = process.env.PORT || 4000;
@@ -44,6 +45,17 @@ app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'
     });
 });
 
+app.post("/json-utils/api/v1/json2xml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const json = req.body;
+    const options = {
+        declaration:{
+            encoding: "UTF-8"
+        }
+    }
+    const xml = js2xmlparser.parse("root", json, options);
+    res.header("Content-Type",'application/xml');
+    res.send(xml);
+});
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
