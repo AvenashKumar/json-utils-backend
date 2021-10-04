@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "js2xmlparser": "^4.0.1",
+    "xml-formatter": "^2.4.1",
     "xml2js": "^0.4.23",
     "yaml": "^1.10.2"
   }

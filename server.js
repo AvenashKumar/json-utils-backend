@@ -5,6 +5,7 @@ import YAML from "yaml";
 import XML2JS from "xml2js";
 import cors from 'cors';
 import js2xmlparser from 'js2xmlparser';
+import xmlFormatter from 'xml-formatter';
 
 // Constants
 const PORT = process.env.PORT || 4000;
@@ -61,6 +62,31 @@ app.post("/json-utils/api/v1/xml2yaml/indent/:indent", Express.text({type: '*/*'
         const yaml = json2yaml(json, indent)
         res.send(yaml);        
     });
+});
+
+app.post("/json-utils/api/v1/xml/beautify/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const xml = req.body;
+    const indent = Number(req.params.indent);
+    var beautifiedXml = xmlFormatter(xml, {
+        indentation: ' '.repeat(indent), 
+        filter: (node) => node.type !== 'Comment', 
+        collapseContent: true, 
+        lineSeparator: '\n'
+    });
+    res.header("Content-Type",'application/xml');
+    res.send(beautifiedXml);
+});
+
+app.post("/json-utils/api/v1/xml/minify", Express.text({type: '*/*'}), (req, res)=>{
+    const xml = req.body;
+    var minifiedXml = xmlFormatter(xml, {
+        indentation: '', 
+        filter: (node) => node.type !== 'Comment', 
+        collapseContent: true, 
+        lineSeparator: ''
+    });
+    res.header("Content-Type",'application/xml');
+    res.send(minifiedXml);
 });
 
 app.post("/json-utils/api/v1/json2xml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
