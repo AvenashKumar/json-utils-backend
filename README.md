@@ -22,11 +22,11 @@ docker push us.gcr.io/json-utils-327201/json-utils-backend:1.0.0
 
 # Endpoint:
 
-## JSON 2 YAML
+## JSON 2 YML
 
 Request Type: POST
 
-Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/json2yaml/indent/2
+Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/json2yml/indent/2
 
 Request Header: Content-Type application/json
 
@@ -61,11 +61,11 @@ Request Body:
 }
 ```
 
-## YAML 2 JSON
+## YML 2 JSON
 
 Request Type: POST
 
-Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/yaml2json/indent/2
+Request URL: https://json-utils-backend-i23qbebcva-uc.a.run.app/json-utils/api/v1/yml2json/indent/2
 
 Request Header: Content-Type text/plain
 

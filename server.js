@@ -1,7 +1,7 @@
 'use strict';
 
 import Express from "express";
-import YAML from "yaml";
+import YML from "yaml";
 import XML2JS from "xml2js";
 import cors from 'cors';
 import js2xmlparser from 'js2xmlparser';
@@ -17,8 +17,8 @@ app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));
 app.use(cors());
 
-function json2yaml(jsonStr, indent){
-    const doc = new YAML.Document({indent: indent});
+function json2yml(jsonStr, indent){
+    const doc = new YML.Document({indent: indent});
     doc.contents = JSON.parse(jsonStr);
     return doc.toString();
 }
@@ -27,13 +27,13 @@ app.get("/json-utils/api/v1/health", (req, res)=>{
     res.json({"server": "UP"});
 });
 
-app.post("/json-utils/api/v1/json2yaml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
-    const yaml = json2yaml(req.body, Number(req.params.indent));
-    res.send(yaml);
+app.post("/json-utils/api/v1/json2yml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const yml = json2yml(req.body, Number(req.params.indent));
+    res.send(yml);
 });
 
-app.post("/json-utils/api/v1/yaml2json/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
-    const jsonObj = YAML.parse(req.body);
+app.post("/json-utils/api/v1/yml2json/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+    const jsonObj = YML.parse(req.body);
     const formattedJson = JSON.stringify(jsonObj, null, Number(req.params.indent));
     res.header("Content-Type",'application/json');
     res.send(formattedJson);
@@ -51,7 +51,7 @@ app.post("/json-utils/api/v1/xml2json/indent/:indent", Express.text({type: '*/*'
     });
 });
 
-app.post("/json-utils/api/v1/xml2yaml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
+app.post("/json-utils/api/v1/xml2yml/indent/:indent", Express.text({type: '*/*'}), (req, res)=>{
     const xml = req.body;
     XML2JS.parseString(xml, (err, result) => {
         if(err) {
@@ -59,8 +59,8 @@ app.post("/json-utils/api/v1/xml2yaml/indent/:indent", Express.text({type: '*/*'
         }
         const indent = Number(req.params.indent);
         const json = JSON.stringify(result, null, indent);
-        const yaml = json2yaml(json, indent)
-        res.send(yaml);        
+        const yml = json2yml(json, indent)
+        res.send(yml);        
     });
 });
 

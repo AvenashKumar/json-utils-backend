@@ -2,7 +2,7 @@ GET http://localhost:4000/json-utils/api/v1/health
 
 ###
 
-POST http://localhost:4000/json-utils/api/v1/json2yaml/indent/2
+POST http://localhost:4000/json-utils/api/v1/json2yml/indent/2
 Content-Type: application/json
 
 {
@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:4000/json-utils/api/v1/yaml2json/indent/8
+POST http://localhost:4000/json-utils/api/v1/yml2json/indent/8
 Content-Type: text/plain
 
 id: "0001"
