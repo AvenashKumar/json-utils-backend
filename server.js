@@ -53,6 +53,26 @@ app.post(
 );
 
 app.post(
+  "/json-utils/api/v1/yml2xml/indent/:indent",
+  Express.text({ type: "*/*" }),
+  (req, res) => {
+    const jsonObj = YML.parse(req.body);
+    const indentStr =  " ".repeat(Number(req.params.indent));
+    const options = {
+      declaration: {
+        encoding: "UTF-8",
+      },
+      format: {
+        indent: indentStr
+      }
+    };
+    const xml = js2xmlparser.parse("root", jsonObj, options);
+    res.header("Content-Type", "application/xml");
+    res.send(xml);
+  }
+);
+
+app.post(
   "/json-utils/api/v1/yml/validate",
   Express.text({ type: "*/*" }),
   (req, res) => {
@@ -183,10 +203,14 @@ app.post(
   Express.text({ type: "*/*" }),
   (req, res) => {
     const json = JSON.parse(req.body);
+    const indentStr =  " ".repeat(Number(req.params.indent));
     const options = {
       declaration: {
         encoding: "UTF-8",
       },
+      format: {
+        indent: indentStr
+      }
     };
     const xml = js2xmlparser.parse("root", json, options);
     res.header("Content-Type", "application/xml");
